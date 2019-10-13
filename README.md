@@ -1,2 +1,2 @@
 # KaijuCombat
-Kaiju Combat is a digital card-board game using Unity and C# programming. 
+Kaiju Combat is a digital board game using Unity and C# programming. 
