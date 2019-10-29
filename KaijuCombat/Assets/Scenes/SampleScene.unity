@@ -193,7 +193,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.078125, y: 0.07421875, z: 0.02734375, w: -0.0390625}
+  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -2.3059837e+18, w: 5.820766e-11}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -322,9 +322,9 @@ RectTransform:
   m_Father: {fileID: 1428428988}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 228.4, y: -225}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -103, y: -36}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805998980
@@ -534,9 +534,9 @@ RectTransform:
   m_Father: {fileID: 1428428988}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -240, y: -225}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -108, y: 38}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144457350
@@ -824,8 +824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7ee1486042b084b9e4e1c4c19c57c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  mana: 0
+  currentHealth: 20
+  currentMana: 0
+  currentMaxMana: 0
   deck:
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
@@ -833,6 +834,7 @@ MonoBehaviour:
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   graveyard: []
   hand: []
+  instantiatedCards: []
 --- !u!4 &1516786578
 Transform:
   m_ObjectHideFlags: 0
@@ -953,8 +955,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7ee1486042b084b9e4e1c4c19c57c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  mana: 0
+  currentHealth: 20
+  currentMana: 0
+  currentMaxMana: 0
   deck:
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
@@ -962,6 +965,7 @@ MonoBehaviour:
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   graveyard: []
   hand: []
+  instantiatedCards: []
 --- !u!4 &1866210036
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,6 +1015,7 @@ MonoBehaviour:
   endTurnButton: {fileID: 1144457348}
   turnNumber: 1
   currentPlayersTurn: 0
+  cardBack: {fileID: 21300000, guid: 6a5bdbe344b3f674d85de0dbc5c0af97, type: 3}
 --- !u!4 &1876405540
 Transform:
   m_ObjectHideFlags: 0

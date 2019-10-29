@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour {
+public class Card : MonoBehaviour, IPointerEnterHandler {
     [SerializeField]
     private string cardName = "Card";
     [SerializeField]
@@ -19,4 +20,9 @@ public class Card : MonoBehaviour {
     public void DestroyCard() {
         Destroy(gameObject);
     }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        transform.SetAsLastSibling();
+    }
+
 }

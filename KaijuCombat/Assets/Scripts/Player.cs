@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int health = 20;
-    public int mana = 0;
+    public int currentHealth = 20;
+    public int currentMana = 0;
+    public int currentMaxMana = 0;
     public List<Card> deck;
     public List<Card> graveyard;
     public List<Card> hand;
+    public List<GameObject> instantiatedCards;
 
     public void EndTurn() {
         GameManager.instance.NextPlayersTurn();
     }
 
     public void StartTurn() {
-        mana += 1;
+        if(currentMaxMana < 10)
+            currentMaxMana += 1;
+        currentMana = currentMaxMana;
         DrawCard();
     }
 
@@ -25,15 +29,20 @@ public class Player : MonoBehaviour
             Card drawedCard = deck[randomIndex];
             deck.RemoveAt(randomIndex);
             hand.Add(drawedCard);
+
+            //Instantiate the new card to the screen and add it to our instantiated list
+            GameObject createdCard = Instantiate(drawedCard, transform.position, Quaternion.identity).gameObject;
+            createdCard.transform.SetParent(GameManager.instance.canvas.transform);
+            instantiatedCards.Add(createdCard);
         }
         else {
-            health -= 1;
+            currentHealth -= 1;
         }
     }
 
     public void ApplyDamage(int damage) {
-        health -= damage;
-        if(health <= 0) {
+        currentHealth -= damage;
+        if(currentHealth <= 0) {
             PlayerDeath();
         }
     }

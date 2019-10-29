@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int turnNumber = 1;
 
     public int currentPlayersTurn = 0; //0 = Player 1 , 1 = Player 2
+
+    public Sprite cardBack;
 
     private void Awake() {
         if (instance == null)
@@ -50,12 +55,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void DrawCardsOnScreen() {
-        for(int i = 0; i < player1.hand.Count; i++) {
-            Instantiate(player1.hand[i], new Vector3(transform.position.x + i * 2*70+100, transform.position.y + 100, transform.position.z), Quaternion.identity).gameObject.transform.SetParent(canvas.transform);
+        for(int i = 0; i < player1.instantiatedCards.Count; i++) {
+            player1.instantiatedCards[i].transform.position = new Vector2(100*i+70, 100);
         }
-
-        for (int i = 0; i < player2.hand.Count; i++) {
-            Instantiate(player2.hand[i], new Vector3(transform.position.x + i * 2*70+100, transform.position.y + 500, transform.position.z), Quaternion.identity).gameObject.transform.SetParent(canvas.transform);
+        for (int i = 0; i < player2.instantiatedCards.Count; i++) {
+            player2.instantiatedCards[i].GetComponent<Image>().sprite = cardBack;
+            player2.instantiatedCards[i].transform.position = new Vector2(100 * i + 70, 300);
+            print(player2.instantiatedCards[i].transform.position);
         }
     }
 }
