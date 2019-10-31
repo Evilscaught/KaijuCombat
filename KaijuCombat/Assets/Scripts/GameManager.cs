@@ -15,6 +15,14 @@ public class GameManager : MonoBehaviour
 
     public GameObject endTurnButton;
 
+    public GameObject player1HealthText;
+    public GameObject player1ManaText;
+    public GameObject player1DeckImage;
+    public GameObject player2HealthText;
+    public GameObject player2ManaText;
+    public GameObject player2DeckImage;
+    public GameObject endGameText;
+
     public int turnNumber = 1;
 
     public int currentPlayersTurn = 0; //0 = Player 1 , 1 = Player 2
@@ -38,6 +46,51 @@ public class GameManager : MonoBehaviour
             endTurnButton.SetActive(true);
         else
             endTurnButton.SetActive(false);
+
+        if (player1 == null) {
+            endGameText.SetActive(true);
+            endGameText.GetComponent<Text>().text = "Defeat!";
+            endTurnButton.GetComponent<Button>().interactable = false;
+        }
+
+        if (player2 == null) {
+            endGameText.SetActive(true);
+            endGameText.GetComponent<Text>().text = "Victory!";
+            endTurnButton.GetComponent<Button>().interactable = false;
+        }
+
+        if (player1) {
+            if (player1 && player1HealthText.GetComponent<Text>().text != "Health: " + player1.GetComponent<Player>().currentHealth)
+                player1HealthText.GetComponent<Text>().text = "Health: " + player1.GetComponent<Player>().currentHealth;
+
+            if (player1ManaText.GetComponent<Text>().text != "Mana: " + player1.GetComponent<Player>().currentMana)
+                player1ManaText.GetComponent<Text>().text = "Mana: " + player1.GetComponent<Player>().currentMana;
+
+            if (player1.deck.Count <= 0)
+                player1DeckImage.SetActive(false);
+            else
+                player1DeckImage.SetActive(true);
+        }
+        else {
+            player1HealthText.GetComponent<Text>().text = "Health: 0";
+        }
+
+        if (player2) {
+            if (player2HealthText.GetComponent<Text>().text != "Health: " + player2.GetComponent<Player>().currentHealth)
+                player2HealthText.GetComponent<Text>().text = "Health: " + player2.GetComponent<Player>().currentHealth;
+
+            if (player2ManaText.GetComponent<Text>().text != "Mana: " + player2.GetComponent<Player>().currentMana)
+                player2ManaText.GetComponent<Text>().text = "Mana: " + player2.GetComponent<Player>().currentMana;
+
+            if (player2.deck.Count <= 0)
+                player2DeckImage.SetActive(false);
+            else
+                player2DeckImage.SetActive(true);
+        }
+        else {
+            player2HealthText.GetComponent<Text>().text = "Health: 0";
+        }
+
     }
 
     public void NextPlayersTurn() {
@@ -56,12 +109,12 @@ public class GameManager : MonoBehaviour
 
     public void DrawCardsOnScreen() {
         for(int i = 0; i < player1.instantiatedCards.Count; i++) {
-            player1.instantiatedCards[i].transform.position = new Vector2(100*i+70, 100);
+            player1.instantiatedCards[i].GetComponent<RectTransform>().position = new Vector2(100*i+70, 100);
+            player1.instantiatedCards[i].GetComponent<Card>().realPlayerOwnsCard = true;
         }
         for (int i = 0; i < player2.instantiatedCards.Count; i++) {
             player2.instantiatedCards[i].GetComponent<Image>().sprite = cardBack;
-            player2.instantiatedCards[i].transform.position = new Vector2(100 * i + 70, 300);
-            print(player2.instantiatedCards[i].transform.position);
+            player2.instantiatedCards[i].GetComponent<RectTransform>().position = new Vector2(100 * i + 70, Screen.height-100f);
         }
     }
 }

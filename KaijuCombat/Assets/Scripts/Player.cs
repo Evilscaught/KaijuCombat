@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
             instantiatedCards.Add(createdCard);
         }
         else {
-            currentHealth -= 1;
+            ApplyDamage(1);
         }
     }
 
