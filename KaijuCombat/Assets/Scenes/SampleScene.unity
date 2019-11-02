@@ -395,7 +395,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -2.3059837e+18, w: 5.820766e-11}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 1.4e-43, w: 0.0625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1190,9 +1190,22 @@ MonoBehaviour:
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
+  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
+  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
+  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
+  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
+  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
+  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
+  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
+  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
+  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
+  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
+  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
+  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
   graveyard: []
   hand: []
-  instantiatedCards: []
+  instantiatedHandCards: []
+  instantiatedGraveyardCards: []
 --- !u!4 &1516786578
 Transform:
   m_ObjectHideFlags: 0
@@ -1475,9 +1488,22 @@ MonoBehaviour:
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
+  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
+  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
+  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
+  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
+  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
+  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
+  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
+  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
+  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
+  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
+  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
+  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
   graveyard: []
   hand: []
-  instantiatedCards: []
+  instantiatedHandCards: []
+  instantiatedGraveyardCards: []
 --- !u!4 &1866210036
 Transform:
   m_ObjectHideFlags: 0

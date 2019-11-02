@@ -108,13 +108,20 @@ public class GameManager : MonoBehaviour
     }
 
     public void DrawCardsOnScreen() {
-        for(int i = 0; i < player1.instantiatedCards.Count; i++) {
-            player1.instantiatedCards[i].GetComponent<RectTransform>().position = new Vector2(100*i+70, 100);
-            player1.instantiatedCards[i].GetComponent<Card>().realPlayerOwnsCard = true;
+        for(int i = 0; i < player1.instantiatedHandCards.Count; i++) {
+            player1.instantiatedHandCards[i].GetComponent<RectTransform>().position = new Vector2(100*i+70, 100);
+            player1.instantiatedHandCards[i].GetComponent<Card>().realPlayerOwnsCard = true;
         }
-        for (int i = 0; i < player2.instantiatedCards.Count; i++) {
-            player2.instantiatedCards[i].GetComponent<Image>().sprite = cardBack;
-            player2.instantiatedCards[i].GetComponent<RectTransform>().position = new Vector2(100 * i + 70, Screen.height-100f);
+        for (int i = 0; i < player1.instantiatedGraveyardCards.Count; i++) {
+            player1.instantiatedGraveyardCards[i].GetComponent<RectTransform>().position = new Vector2(Screen.width-169, 285);
+            player1.instantiatedGraveyardCards[i].GetComponent<Card>().realPlayerOwnsCard = true;
+        }
+        for (int i = 0; i < player2.instantiatedHandCards.Count; i++) {
+            player2.instantiatedHandCards[i].GetComponent<Image>().sprite = cardBack;
+            player2.instantiatedHandCards[i].GetComponent<RectTransform>().position = new Vector2(100 * i + 70, Screen.height-100f);
+        }
+        for (int i = 0; i < player2.instantiatedGraveyardCards.Count; i++) {
+            player2.instantiatedGraveyardCards[i].GetComponent<RectTransform>().position = new Vector2(Screen.width - 169, Screen.height-285);
         }
     }
 }

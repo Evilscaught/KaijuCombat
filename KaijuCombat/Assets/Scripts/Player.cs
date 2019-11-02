@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     public List<Card> deck;
     public List<Card> graveyard;
     public List<Card> hand;
-    public List<GameObject> instantiatedCards;
+    public List<GameObject> instantiatedHandCards;
+    public List<GameObject> instantiatedGraveyardCards;
 
     public void EndTurn() {
         GameManager.instance.NextPlayersTurn();
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
     }
 
     public void DrawCard() {
-        if (deck.Count > 0) {
+        if (deck.Count > 0 && hand.Count < 7) {
             int randomIndex = Random.Range(0, deck.Count);
             Card drawedCard = deck[randomIndex];
             deck.RemoveAt(randomIndex);
@@ -33,7 +34,18 @@ public class Player : MonoBehaviour
             //Instantiate the new card to the screen and add it to our instantiated list
             GameObject createdCard = Instantiate(drawedCard, transform.position, Quaternion.identity).gameObject;
             createdCard.transform.SetParent(GameManager.instance.canvas.transform);
-            instantiatedCards.Add(createdCard);
+            instantiatedHandCards.Add(createdCard);
+        }
+        else if(deck.Count > 0 && hand.Count >= 7) {
+            int randomIndex = Random.Range(0, deck.Count);
+            Card drawedCard = deck[randomIndex];
+            deck.RemoveAt(randomIndex);
+            graveyard.Add(drawedCard);
+
+            //Instantiate the new card to the screen and add it to our instantiated list
+            GameObject createdCard = Instantiate(drawedCard, transform.position, Quaternion.identity).gameObject;
+            createdCard.transform.SetParent(GameManager.instance.canvas.transform);
+            instantiatedGraveyardCards.Add(createdCard);
         }
         else {
             ApplyDamage(1);
