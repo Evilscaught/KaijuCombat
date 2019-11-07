@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDragHandler, IEndDragHandler {
+public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler {
     [SerializeField]
     private string cardName = "Card";
     [SerializeField]
@@ -15,8 +15,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     private int cardId = 0;
 
     private bool inPlay = false;
+    bool zoomedIn = false;
     public bool realPlayerOwnsCard = false;
     private Vector2 originalPosition;
+    Vector2 origScale;
+    Vector2 origPosition;
 
 
     public string getName() { return cardName; }
@@ -29,10 +32,28 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
 
     public void OnPointerEnter(PointerEventData eventData) {
         transform.SetAsLastSibling();
+
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+        if (realPlayerOwnsCard && eventData.button == PointerEventData.InputButton.Right) {
+            if (!zoomedIn) {
+                origScale = transform.localScale;
+                origPosition = transform.position;
+                transform.localScale = new Vector3(1f, 1f, 1f);
+                transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0f);
+                zoomedIn = true;
+            }
+            else {
+                transform.localScale = origScale;
+                transform.position = origPosition;
+                zoomedIn = false;
+            }
+        }
     }
 
     public void OnDrag(PointerEventData eventData) {
-        if(!inPlay && realPlayerOwnsCard)
+        if(!inPlay && realPlayerOwnsCard && !zoomedIn)
             this.transform.position = eventData.position;
     }
 
