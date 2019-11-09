@@ -15,9 +15,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuContainer : MonoBehaviour
 {
+    // Loads the next scene (File -> Build Settings -> Scenes in Build)
     public void PlayGame()
     {
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void killGame()
+    {
+        killGame();
     }
 }
