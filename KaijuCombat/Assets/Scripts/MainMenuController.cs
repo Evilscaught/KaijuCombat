@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuContainer : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
     // Loads the next scene (File -> Build Settings -> Scenes in Build)
     public void PlayGame()
