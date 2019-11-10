@@ -23,6 +23,6 @@ public class MenuContainer : MonoBehaviour
 
     public void killGame()
     {
-        killGame();
+        Application.Quit();
     }
 }
