@@ -12,17 +12,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MainMenuController : MonoBehaviour
 {
+    struct Scenes
+    {
+        public int main_menu_scene;
+        public int deck_builder_scene;
+        public int game_scene;
+
+        public Scenes(int main_menu_scene, int deck_builder_scene, int game_scene)
+        {
+            this.main_menu_scene = main_menu_scene;
+            this.deck_builder_scene = deck_builder_scene;
+            this.game_scene = game_scene;
+        }
+    }
+
     // Loads the next scene (File -> Build Settings -> Scenes in Build)
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("GameScene");
     }
 
+    // Kills the application
     public void killGame()
     {
         Application.Quit();
+    }
+
+    // Loads the DeckBuilder scene. 
+    public void deckBuilder()
+    {
+        SceneManager.LoadScene("DeckBuilderScene");
     }
 }
