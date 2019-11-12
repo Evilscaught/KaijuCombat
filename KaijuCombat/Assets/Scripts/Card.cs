@@ -15,11 +15,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     private int cardId = 0;
 
     private bool inPlay = false;
-    bool zoomedIn = false;
-    public bool realPlayerOwnsCard = false;
-    private Vector2 originalPosition;
+    public bool zoomedIn = false;
+    private bool currentlyDragging = false;
+    public bool realPlayerCanViewCard = false;
+    private Vector2 originalPosition; //This is for dragging the card
     Vector2 origScale;
-    Vector2 origPosition;
+    Vector2 origPosition; //This is for returning the card after zooming
 
 
     public string getName() { return cardName; }
@@ -32,11 +33,34 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
 
     public void OnPointerEnter(PointerEventData eventData) {
         transform.SetAsLastSibling();
-
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        if (realPlayerOwnsCard && eventData.button == PointerEventData.InputButton.Right) {
+        if (realPlayerCanViewCard && eventData.button == PointerEventData.InputButton.Right) {
+            ToggleZoom();
+        }
+    }
+
+    public void OnDrag(PointerEventData eventData) {
+        if (!inPlay && realPlayerCanViewCard && !zoomedIn && eventData.button != PointerEventData.InputButton.Right) {
+            this.transform.position = eventData.position;
+            currentlyDragging = true;
+        }
+    }
+
+    public void OnBeginDrag(PointerEventData eventData) {
+        if(currentlyDragging == false)
+            originalPosition = transform.position;
+        currentlyDragging = true;
+    }
+
+    public void OnEndDrag(PointerEventData eventData) {
+        transform.position = originalPosition;
+        currentlyDragging = false;
+    }
+
+    public void ToggleZoom() {
+        if (!currentlyDragging) {
             if (!zoomedIn) {
                 origScale = transform.localScale;
                 origPosition = transform.position;
@@ -50,18 +74,5 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
                 zoomedIn = false;
             }
         }
-    }
-
-    public void OnDrag(PointerEventData eventData) {
-        if(!inPlay && realPlayerOwnsCard && !zoomedIn)
-            this.transform.position = eventData.position;
-    }
-
-    public void OnBeginDrag(PointerEventData eventData) {
-        originalPosition = transform.position;
-    }
-
-    public void OnEndDrag(PointerEventData eventData) {
-        transform.position = originalPosition;
     }
 }

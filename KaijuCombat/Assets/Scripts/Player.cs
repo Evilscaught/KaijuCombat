@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     public List<Card> deck;
     public List<Card> graveyard;
     public List<Card> hand;
+    public List<Card> played;
     public List<GameObject> instantiatedHandCards;
     public List<GameObject> instantiatedGraveyardCards;
+    public List<GameObject> instantiatedLaneCards;
 
     public void EndTurn() {
         GameManager.instance.NextPlayersTurn();
@@ -61,5 +63,10 @@ public class Player : MonoBehaviour
 
     public void PlayerDeath() {
         Destroy(gameObject);
+    }
+
+    public void PlayMonster(Card monster) {
+        played.Add(monster);
+        hand.Remove(monster);
     }
 }

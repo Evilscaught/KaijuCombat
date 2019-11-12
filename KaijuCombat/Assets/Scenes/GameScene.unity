@@ -197,6 +197,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184762188}
   m_CullTransparentMesh: 0
+--- !u!1 &273480186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 273480188}
+  - component: {fileID: 273480187}
+  m_Layer: 0
+  m_Name: Lane1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &273480187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273480186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731c83545d48c294983b79a16d5a9134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Monsters: []
+  player2Monsters: []
+  MAXMONSTERS: 1
+--- !u!4 &273480188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273480186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428428988}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &407286941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -320,7 +366,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 6a5bdbe344b3f674d85de0dbc5c0af97,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
 --- !u!1 &705507993
 GameObject:
@@ -536,7 +583,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 6a5bdbe344b3f674d85de0dbc5c0af97,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
 --- !u!1 &963194225
 GameObject:
@@ -1145,6 +1193,7 @@ RectTransform:
   - {fileID: 1597705240}
   - {fileID: 2113278270}
   - {fileID: 2030273730}
+  - {fileID: 273480188}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1204,8 +1253,10 @@ MonoBehaviour:
   - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
   graveyard: []
   hand: []
+  played: []
   instantiatedHandCards: []
   instantiatedGraveyardCards: []
+  instantiatedLaneCards: []
 --- !u!4 &1516786578
 Transform:
   m_ObjectHideFlags: 0
@@ -1502,8 +1553,10 @@ MonoBehaviour:
   - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
   graveyard: []
   hand: []
+  played: []
   instantiatedHandCards: []
   instantiatedGraveyardCards: []
+  instantiatedLaneCards: []
 --- !u!4 &1866210036
 Transform:
   m_ObjectHideFlags: 0
@@ -1558,6 +1611,8 @@ MonoBehaviour:
   player2ManaText: {fileID: 2113278269}
   player2DeckImage: {fileID: 1071756826}
   endGameText: {fileID: 2030273729}
+  lanes:
+  - {fileID: 273480187}
   turnNumber: 1
   currentPlayersTurn: 0
   cardBack: {fileID: 21300000, guid: 6a5bdbe344b3f674d85de0dbc5c0af97, type: 3}

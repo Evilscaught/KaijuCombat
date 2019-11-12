@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public GameObject player2DeckImage;
     public GameObject endGameText;
 
+    public List<Lane> lanes;
+
     public int turnNumber = 1;
 
     public int currentPlayersTurn = 0; //0 = Player 1 , 1 = Player 2
@@ -108,20 +110,39 @@ public class GameManager : MonoBehaviour
     }
 
     public void DrawCardsOnScreen() {
+        //Player 1's hand
         for(int i = 0; i < player1.instantiatedHandCards.Count; i++) {
             player1.instantiatedHandCards[i].GetComponent<RectTransform>().position = new Vector2(100*i+70, 100);
-            player1.instantiatedHandCards[i].GetComponent<Card>().realPlayerOwnsCard = true;
+            player1.instantiatedHandCards[i].GetComponent<Card>().realPlayerCanViewCard = true;
+            if(player1.instantiatedHandCards[i].GetComponent<Card>().zoomedIn)
+                player1.instantiatedHandCards[i].GetComponent<Card>().ToggleZoom();
         }
+
+        //Player 1's graveyard
         for (int i = 0; i < player1.instantiatedGraveyardCards.Count; i++) {
             player1.instantiatedGraveyardCards[i].GetComponent<RectTransform>().position = new Vector2(Screen.width-169, 285);
-            player1.instantiatedGraveyardCards[i].GetComponent<Card>().realPlayerOwnsCard = true;
+            player1.instantiatedGraveyardCards[i].GetComponent<Card>().realPlayerCanViewCard = true;
+            if (player1.instantiatedGraveyardCards[i].GetComponent<Card>().zoomedIn)
+                player1.instantiatedGraveyardCards[i].GetComponent<Card>().ToggleZoom();
         }
+
+        //Player 2's hand
         for (int i = 0; i < player2.instantiatedHandCards.Count; i++) {
             player2.instantiatedHandCards[i].GetComponent<Image>().sprite = cardBack;
             player2.instantiatedHandCards[i].GetComponent<RectTransform>().position = new Vector2(100 * i + 70, Screen.height-100f);
         }
+
+        //Player 2's graveyard
         for (int i = 0; i < player2.instantiatedGraveyardCards.Count; i++) {
             player2.instantiatedGraveyardCards[i].GetComponent<RectTransform>().position = new Vector2(Screen.width - 169, Screen.height-285);
+            player2.instantiatedGraveyardCards[i].GetComponent<Card>().realPlayerCanViewCard = true;
+            if (player2.instantiatedGraveyardCards[i].GetComponent<Card>().zoomedIn)
+                player2.instantiatedGraveyardCards[i].GetComponent<Card>().ToggleZoom();
+        }
+
+        //Player 1's lane cards
+        for (int i = 0; i < player1.instantiatedLaneCards.Count; i++) {
+            player1.instantiatedLaneCards[i].GetComponent<RectTransform>().position = new Vector2(100 * i + 70, 285);
         }
     }
 }

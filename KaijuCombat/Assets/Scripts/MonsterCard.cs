@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class MonsterCard : Card
-{
+public class MonsterCard : Card, IPointerClickHandler {
     [SerializeField]
     private int cardAttack = 0;
     [SerializeField]
