@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public List<Card> deck;
     public List<Card> graveyard;
     public List<Card> hand;
-    public List<Card> played;
     public List<GameObject> instantiatedHandCards;
     public List<GameObject> instantiatedGraveyardCards;
     public List<GameObject> instantiatedLaneCards;
@@ -36,6 +35,7 @@ public class Player : MonoBehaviour
             //Instantiate the new card to the screen and add it to our instantiated list
             GameObject createdCard = Instantiate(drawedCard, transform.position, Quaternion.identity).gameObject;
             createdCard.transform.SetParent(GameManager.instance.canvas.transform);
+            createdCard.name = createdCard.name.Replace("(Clone)", "");
             instantiatedHandCards.Add(createdCard);
         }
         else if(deck.Count > 0 && hand.Count >= 7) {
@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
             //Instantiate the new card to the screen and add it to our instantiated list
             GameObject createdCard = Instantiate(drawedCard, transform.position, Quaternion.identity).gameObject;
             createdCard.transform.SetParent(GameManager.instance.canvas.transform);
+            createdCard.name = createdCard.name.Replace("(Clone)", "");
             instantiatedGraveyardCards.Add(createdCard);
         }
         else {
@@ -65,8 +66,17 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void PlayMonster(Card monster) {
-        played.Add(monster);
-        hand.Remove(monster);
+    public void RemoveCardFromHand(Card card) {
+        int result = -1;
+        for (int i = 0; i < hand.Count; ++i) {
+            if(card.name == hand[i].name) {
+                result = i;
+                break;
+            }
+        }
+        if (result != -1) {
+            hand.RemoveAt(result);
+            instantiatedHandCards.Remove(card.gameObject);
+        }
     }
 }

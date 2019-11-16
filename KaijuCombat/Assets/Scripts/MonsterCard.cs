@@ -11,13 +11,17 @@ public class MonsterCard : Card, IPointerClickHandler {
 
     public void ApplyDamage(int damage) {
         cardDefense -= damage;
-        if(cardDefense <= 0) {
-            DestroyCard();
-        }
     }
 
     public void AttackCard(MonsterCard target) {
+        ApplyDamage(target.cardAttack);
         target.ApplyDamage(cardAttack);
+        if (cardDefense <= 0) {
+            DestroyCard();
+        }
+        if(target.cardDefense <= 0) {
+            target.DestroyCard();
+        }
     }
 
     public void AttackPlayer(Player target) {

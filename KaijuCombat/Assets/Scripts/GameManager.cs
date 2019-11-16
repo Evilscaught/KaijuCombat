@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public Sprite cardBack;
 
+    public bool endGame = false;
+
     private void Awake() {
         if (instance == null)
             instance = this;
@@ -39,6 +41,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
+        for(int i = 0; i < 5; ++i) {
+            player1.DrawCard();
+            player2.DrawCard();
+        }
         player1.StartTurn();
         DrawCardsOnScreen();
     }
@@ -50,15 +56,25 @@ public class GameManager : MonoBehaviour
             endTurnButton.SetActive(false);
 
         if (player1 == null) {
+            if (!endGame) {
+                endGameText.transform.SetParent(null);
+                endGameText.transform.SetParent(canvas.transform);
+            }
             endGameText.SetActive(true);
             endGameText.GetComponent<Text>().text = "Defeat!";
             endTurnButton.GetComponent<Button>().interactable = false;
+            endGame = true;
         }
 
         if (player2 == null) {
+            if (!endGame) {
+                endGameText.transform.SetParent(null);
+                endGameText.transform.SetParent(canvas.transform);
+            }
             endGameText.SetActive(true);
             endGameText.GetComponent<Text>().text = "Victory!";
             endTurnButton.GetComponent<Button>().interactable = false;
+            endGame = true;
         }
 
         if (player1) {
@@ -102,11 +118,19 @@ public class GameManager : MonoBehaviour
             DrawCardsOnScreen();
         }
         else {
+            AllLanesAttack();
             currentPlayersTurn = 0;
             turnNumber += 1;
             player1.StartTurn();
             DrawCardsOnScreen();
         }
+    }
+
+    public void AllLanesAttack() {
+        for(int i = 0; i < lanes.Count; ++i) {
+            lanes[i].AttackPhase();
+        }
+        DrawCardsOnScreen();
     }
 
     public void DrawCardsOnScreen() {
@@ -122,6 +146,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < player1.instantiatedGraveyardCards.Count; i++) {
             player1.instantiatedGraveyardCards[i].GetComponent<RectTransform>().position = new Vector2(Screen.width-169, 285);
             player1.instantiatedGraveyardCards[i].GetComponent<Card>().realPlayerCanViewCard = true;
+            player1.instantiatedGraveyardCards[i].GetComponent<Card>().currentlyDestroyed = true;
             if (player1.instantiatedGraveyardCards[i].GetComponent<Card>().zoomedIn)
                 player1.instantiatedGraveyardCards[i].GetComponent<Card>().ToggleZoom();
         }
@@ -136,6 +161,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < player2.instantiatedGraveyardCards.Count; i++) {
             player2.instantiatedGraveyardCards[i].GetComponent<RectTransform>().position = new Vector2(Screen.width - 169, Screen.height-285);
             player2.instantiatedGraveyardCards[i].GetComponent<Card>().realPlayerCanViewCard = true;
+            player2.instantiatedGraveyardCards[i].GetComponent<Card>().currentlyDestroyed = true;
             if (player2.instantiatedGraveyardCards[i].GetComponent<Card>().zoomedIn)
                 player2.instantiatedGraveyardCards[i].GetComponent<Card>().ToggleZoom();
         }
@@ -143,6 +169,13 @@ public class GameManager : MonoBehaviour
         //Player 1's lane cards
         for (int i = 0; i < player1.instantiatedLaneCards.Count; i++) {
             player1.instantiatedLaneCards[i].GetComponent<RectTransform>().position = new Vector2(100 * i + 70, 285);
+        }
+
+        //Lanes
+        for (int i = 0; i < lanes.Count; ++i) {
+            for (int j = 0; j < lanes[i].player1Monsters.Count; j++) {
+                lanes[i].player1Monsters[j].GetComponent<RectTransform>().position = new Vector2(lanes[i].transform.position.x, lanes[i].transform.position.y - 50 - 100 * j);
+            }
         }
     }
 }
