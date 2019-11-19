@@ -16,6 +16,9 @@ using System;
 
 public class MainMenuController : MonoBehaviour
 {
+    public GameObject escapeUI;
+    public bool isShowing;
+
     struct Scenes
     {
         public int main_menu_scene;
@@ -36,14 +39,20 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    public void ResumeGame()
+    {   
+        isShowing = !isShowing;
+        escapeUI.SetActive(isShowing);
+    }
+
     // Kills the application
-    public void killGame()
+    public void KillGame()
     {
         Application.Quit();
     }
 
     // Loads the DeckBuilder scene. 
-    public void deckBuilder()
+    public void DeckBuilder()
     {
         SceneManager.LoadScene("DeckBuilderScene");
     }
