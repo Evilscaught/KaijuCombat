@@ -407,7 +407,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6a5bdbe344b3f674d85de0dbc5c0af97,
+      objectReference: {fileID: 21300000, guid: b32cdd8a6731c304e9071495e767a8db,
         type: 3}
     m_RemovedComponents:
     - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
@@ -485,7 +485,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.3509887e-38, z: -2.407486e-35, w: 5.0706036e+30}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 1.4e-43, w: 0.0625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -624,7 +624,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6a5bdbe344b3f674d85de0dbc5c0af97,
+      objectReference: {fileID: 21300000, guid: b32cdd8a6731c304e9071495e767a8db,
         type: 3}
     m_RemovedComponents:
     - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
@@ -843,7 +843,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1877,7 +1877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1937,22 +1937,17 @@ MonoBehaviour:
   currentMana: 0
   currentMaxMana: 0
   deck:
-  - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
-  - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
-  - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
-  - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
-  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
-  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
-  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
-  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
-  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
-  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
-  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
-  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
-  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
-  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
-  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
-  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
+  - {fileID: 2040752444474114115, guid: 993f6ca5a462fe545ba5179d2c87b999, type: 3}
+  - {fileID: 7695320093345970068, guid: bf3f73fcb479c0b448e3d74e9302f69d, type: 3}
+  - {fileID: 3005100983826774975, guid: 287d90ec3667b374ba079d73070b1235, type: 3}
+  - {fileID: 4063500118835879093, guid: 532d0feb867b54843a8d181c731cadcf, type: 3}
+  - {fileID: 7343874926298581567, guid: 882a6f55d04c3bf438f9e4697e3ccc5e, type: 3}
+  - {fileID: 6063837000882722524, guid: 8424d9356b7e46a4696c33298ec8ad45, type: 3}
+  - {fileID: 8130150250428384650, guid: 70439b2e9e36af24cbc2f747bed71107, type: 3}
+  - {fileID: 8094565665519049804, guid: fe537cb9b93de59448cefc7db730f7e9, type: 3}
+  - {fileID: 8723137633475455109, guid: 8895c760b595dfa42847015f2b912855, type: 3}
+  - {fileID: 7819900054275350314, guid: b103ab08329cd3845898aa342308614d, type: 3}
+  - {fileID: 205469964522136292, guid: f9ae60c0695685f408c7cddd4f722a54, type: 3}
   graveyard: []
   hand: []
   instantiatedHandCards: []
@@ -2020,7 +2015,8 @@ MonoBehaviour:
   - {fileID: 894351423}
   turnNumber: 1
   currentPlayersTurn: 0
-  cardBack: {fileID: 21300000, guid: 6a5bdbe344b3f674d85de0dbc5c0af97, type: 3}
+  cardBack: {fileID: 21300000, guid: b32cdd8a6731c304e9071495e767a8db, type: 3}
+  endGame: 0
 --- !u!4 &1876405540
 Transform:
   m_ObjectHideFlags: 0
@@ -2085,7 +2081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2162,7 +2158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

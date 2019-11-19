@@ -108,7 +108,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
             if (!zoomedIn) {
                 origScale = transform.localScale;
                 origPosition = transform.position;
-                transform.localScale = new Vector3(1f, 1f, 1f);
+                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0f);
                 zoomedIn = true;
             }
