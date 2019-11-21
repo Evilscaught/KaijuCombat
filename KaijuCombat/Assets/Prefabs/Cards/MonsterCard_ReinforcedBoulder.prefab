@@ -93,5 +93,6 @@ MonoBehaviour:
   realPlayerCanViewCard: 0
   zoomedIn: 0
   currentlyDestroyed: 0
+  inPlay: 0
   cardAttack: 0
   cardDefense: 8

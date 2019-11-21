@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public List<Card> hand;
     public List<GameObject> instantiatedHandCards;
     public List<GameObject> instantiatedGraveyardCards;
-    public List<GameObject> instantiatedLaneCards;
 
     public void EndTurn() {
         GameManager.instance.NextPlayersTurn();

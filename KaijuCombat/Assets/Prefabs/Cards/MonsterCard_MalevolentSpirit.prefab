@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1078, y: -200}
+  m_AnchoredPosition: {x: 290, y: 605.5}
   m_SizeDelta: {x: 400, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9182428912281478456
@@ -93,5 +93,6 @@ MonoBehaviour:
   realPlayerCanViewCard: 0
   zoomedIn: 0
   currentlyDestroyed: 0
+  inPlay: 0
   cardAttack: 3
   cardDefense: 3

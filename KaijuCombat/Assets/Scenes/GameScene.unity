@@ -485,7 +485,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 1.4e-43, w: 0.0625}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1138,7 +1138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1304558800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1437,6 +1437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1516786578}
   - component: {fileID: 1516786577}
+  - component: {fileID: 1516786579}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -1460,27 +1461,21 @@ MonoBehaviour:
   currentMana: 0
   currentMaxMana: 0
   deck:
-  - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
-  - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
-  - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
-  - {fileID: 1639302125918728186, guid: bd444cb7de6e66a41aa758891084200f, type: 3}
-  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
-  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
-  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
-  - {fileID: 710252470840409550, guid: 61c1584499506af4da11e9427a1974ac, type: 3}
-  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
-  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
-  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
-  - {fileID: 5699098906842393078, guid: f73bbf3999e019a489a0edf66ba20291, type: 3}
-  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
-  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
-  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
-  - {fileID: 2662944971193527859, guid: 5fa72e6389fe8f34496310f1a09e4d28, type: 3}
+  - {fileID: 2040752444474114115, guid: 993f6ca5a462fe545ba5179d2c87b999, type: 3}
+  - {fileID: 7695320093345970068, guid: bf3f73fcb479c0b448e3d74e9302f69d, type: 3}
+  - {fileID: 3005100983826774975, guid: 287d90ec3667b374ba079d73070b1235, type: 3}
+  - {fileID: 4063500118835879093, guid: 532d0feb867b54843a8d181c731cadcf, type: 3}
+  - {fileID: 7343874926298581567, guid: 882a6f55d04c3bf438f9e4697e3ccc5e, type: 3}
+  - {fileID: 6063837000882722524, guid: 8424d9356b7e46a4696c33298ec8ad45, type: 3}
+  - {fileID: 8130150250428384650, guid: 70439b2e9e36af24cbc2f747bed71107, type: 3}
+  - {fileID: 8094565665519049804, guid: fe537cb9b93de59448cefc7db730f7e9, type: 3}
+  - {fileID: 8723137633475455109, guid: 8895c760b595dfa42847015f2b912855, type: 3}
+  - {fileID: 7819900054275350314, guid: b103ab08329cd3845898aa342308614d, type: 3}
+  - {fileID: 205469964522136292, guid: f9ae60c0695685f408c7cddd4f722a54, type: 3}
   graveyard: []
   hand: []
   instantiatedHandCards: []
   instantiatedGraveyardCards: []
-  instantiatedLaneCards: []
 --- !u!4 &1516786578
 Transform:
   m_ObjectHideFlags: 0
@@ -1495,6 +1490,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1516786579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516786576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f730f19cc68530449854d592e47c5857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1563930827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,7 +1959,6 @@ MonoBehaviour:
   hand: []
   instantiatedHandCards: []
   instantiatedGraveyardCards: []
-  instantiatedLaneCards: []
 --- !u!4 &1866210036
 Transform:
   m_ObjectHideFlags: 0
@@ -1977,6 +1983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1876405540}
   - component: {fileID: 1876405539}
+  - component: {fileID: 1876405541}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2031,6 +2038,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1876405541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876405538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9837d59990ee0574c8258b82ccbf7e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allPossibleCards:
+  - {fileID: 2040752444474114115, guid: 993f6ca5a462fe545ba5179d2c87b999, type: 3}
+  - {fileID: 7695320093345970068, guid: bf3f73fcb479c0b448e3d74e9302f69d, type: 3}
+  - {fileID: 3005100983826774975, guid: 287d90ec3667b374ba079d73070b1235, type: 3}
+  - {fileID: 4063500118835879093, guid: 532d0feb867b54843a8d181c731cadcf, type: 3}
+  - {fileID: 7343874926298581567, guid: 882a6f55d04c3bf438f9e4697e3ccc5e, type: 3}
+  - {fileID: 6063837000882722524, guid: 8424d9356b7e46a4696c33298ec8ad45, type: 3}
+  - {fileID: 8130150250428384650, guid: 70439b2e9e36af24cbc2f747bed71107, type: 3}
+  - {fileID: 8094565665519049804, guid: fe537cb9b93de59448cefc7db730f7e9, type: 3}
+  - {fileID: 8723137633475455109, guid: 8895c760b595dfa42847015f2b912855, type: 3}
+  - {fileID: 7819900054275350314, guid: b103ab08329cd3845898aa342308614d, type: 3}
+  - {fileID: 205469964522136292, guid: f9ae60c0695685f408c7cddd4f722a54, type: 3}
 --- !u!1 &2030273729
 GameObject:
   m_ObjectHideFlags: 0

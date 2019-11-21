@@ -153,7 +153,6 @@ public class GameManager : MonoBehaviour
 
         //Player 2's hand
         for (int i = 0; i < player2.instantiatedHandCards.Count; i++) {
-            player2.instantiatedHandCards[i].GetComponent<Image>().sprite = cardBack;
             player2.instantiatedHandCards[i].GetComponent<RectTransform>().position = new Vector2(100 * i + 70, Screen.height-100f);
         }
 
@@ -166,15 +165,13 @@ public class GameManager : MonoBehaviour
                 player2.instantiatedGraveyardCards[i].GetComponent<Card>().ToggleZoom();
         }
 
-        //Player 1's lane cards
-        for (int i = 0; i < player1.instantiatedLaneCards.Count; i++) {
-            player1.instantiatedLaneCards[i].GetComponent<RectTransform>().position = new Vector2(100 * i + 70, 285);
-        }
-
         //Lanes
         for (int i = 0; i < lanes.Count; ++i) {
             for (int j = 0; j < lanes[i].player1Monsters.Count; j++) {
                 lanes[i].player1Monsters[j].GetComponent<RectTransform>().position = new Vector2(lanes[i].transform.position.x, lanes[i].transform.position.y - 50 - 100 * j);
+            }
+            for (int j = 0; j < lanes[i].player2Monsters.Count; j++) {
+                lanes[i].player2Monsters[j].GetComponent<RectTransform>().position = new Vector2(lanes[i].transform.position.x, lanes[i].transform.position.y + 50 + 100 * j);
             }
         }
     }

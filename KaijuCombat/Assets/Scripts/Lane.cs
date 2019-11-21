@@ -13,6 +13,15 @@ public class Lane : MonoBehaviour{
         player2 = GameManager.instance.player2;
     }
 
+    private void Update() {
+        if (player1Monsters.Count > 0 && player1Monsters[0] == null) {
+            player1Monsters.RemoveAt(0);
+        }
+        if (player2Monsters.Count > 0 && player2Monsters[0] == null) {
+            player2Monsters.RemoveAt(0);
+        }
+    }
+
     public void AddCard(Player player, MonsterCard card) {
         if(player == player1) {
             player1Monsters.Add(card);
@@ -31,12 +40,6 @@ public class Lane : MonoBehaviour{
             }
             else {
                 player1Monsters[0].AttackCard(player2Monsters[0]);
-                if (player1Monsters[0] == null) {
-                    player1Monsters.RemoveAt(0);
-                }
-                if (player2Monsters[0] == null) {
-                    player2Monsters.RemoveAt(0);
-                }
             }
         }else if(player2Monsters.Count > 0) {
             player2Monsters[0].AttackPlayer(player1);

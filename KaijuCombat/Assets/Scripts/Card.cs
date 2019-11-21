@@ -18,11 +18,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     public bool zoomedIn = false;
     public bool currentlyDestroyed = false;
 
-    private bool inPlay = false;
+    public bool inPlay = false;
     private bool currentlyDragging = false;
     private Vector2 originalPosition; //This is for dragging the card
     Vector2 origScale;
     Vector2 origPosition; //This is for returning the card after zooming
+    private Sprite originalSprite;
 
 
     public string getName() { return cardName; }
@@ -117,6 +118,19 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
                 transform.position = origPosition;
                 zoomedIn = false;
             }
+        }
+    }
+
+    void Awake() {
+        originalSprite = GetComponent<Image>().sprite;
+    }
+
+    void Update() {
+        if (realPlayerCanViewCard == false) {
+            GetComponent<Image>().sprite = GameManager.instance.cardBack;
+        }
+        else {
+            GetComponent<Image>().sprite = originalSprite;
         }
     }
 }
