@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 2
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1360,8 +1360,8 @@ MonoBehaviour:
   m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
-  m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_DecelerationRate: 10
+  m_ScrollSensitivity: 100
   m_Viewport: {fileID: 360286382}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 55221194}
