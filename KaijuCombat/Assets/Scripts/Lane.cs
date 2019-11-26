@@ -39,7 +39,18 @@ public class Lane : MonoBehaviour{
                 player1Monsters[0].AttackPlayer(player2);
             }
             else {
-                player1Monsters[0].AttackCard(player2Monsters[0]);
+                player1Monsters[0].ApplyDamage(player2Monsters[0].getAttack());
+                player2Monsters[0].ApplyDamage(player1Monsters[0].getAttack());
+                if (player1Monsters[0].getDefense() <= 0) {
+                    GameManager.instance.player1.graveyard.Add(player1Monsters[0]);
+                    GameManager.instance.player1.instantiatedGraveyardCards.Add(player1Monsters[0].gameObject);
+                    player1Monsters.RemoveAt(0);
+                }
+                if (player2Monsters[0].getDefense() <= 0) {
+                    GameManager.instance.player2.graveyard.Add(player2Monsters[0]);
+                    GameManager.instance.player2.instantiatedGraveyardCards.Add(player2Monsters[0].gameObject);
+                    player2Monsters.RemoveAt(0);
+                }
             }
         }else if(player2Monsters.Count > 0) {
             player2Monsters[0].AttackPlayer(player1);
