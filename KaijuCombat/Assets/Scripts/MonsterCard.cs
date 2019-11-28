@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class MonsterCard : Card
-{
+public class MonsterCard : Card, IPointerClickHandler {
     [SerializeField]
     private int cardAttack = 0;
     [SerializeField]
@@ -11,13 +11,17 @@ public class MonsterCard : Card
 
     public void ApplyDamage(int damage) {
         cardDefense -= damage;
-        if(cardDefense <= 0) {
-            DestroyCard();
-        }
     }
 
     public void AttackCard(MonsterCard target) {
+        ApplyDamage(target.cardAttack);
         target.ApplyDamage(cardAttack);
+        if (cardDefense <= 0) {
+            DestroyCard();
+        }
+        if(target.cardDefense <= 0) {
+            target.DestroyCard();
+        }
     }
 
     public void AttackPlayer(Player target) {
