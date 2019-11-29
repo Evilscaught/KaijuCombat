@@ -1,4 +1,15 @@
-﻿using System.Collections;
+﻿/* Author(s):           Jack Cummings (Code), Scott McKay (Documentation & Formatting)
+ * Group:               The Omnipotent Creators
+ * Date of Creation:    Thursday, November 28th, 2019 at 7:59 p.m. M.S.T. (Autumn Semester MMXIX)
+ * Last Edit:           Thursday, November 28th, 2019
+ * Class:               Game Engines
+ * Instructor:          Michael Cassens
+ * Institution:         The University of Montana
+ * 
+ * Purpose of Class:    Controller for the deck builder
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
