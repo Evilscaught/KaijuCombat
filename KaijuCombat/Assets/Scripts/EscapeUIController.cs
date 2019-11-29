@@ -15,6 +15,8 @@ using UnityEngine;
 public class EscapeUIController : MonoBehaviour
 {
     public GameObject escapeUI;
+    public GameObject obscuringPanel;
+    public GameObject settings;
     private bool isShowing;
 
     // Update is called once per frame
@@ -25,6 +27,8 @@ public class EscapeUIController : MonoBehaviour
         {
             isShowing = !isShowing;
             escapeUI.SetActive(isShowing);
+            obscuringPanel.SetActive(isShowing);
+            settings.SetActive(false);
         }
     }
 
@@ -35,6 +39,8 @@ public class EscapeUIController : MonoBehaviour
     {
         isShowing = !isShowing;
         escapeUI.SetActive(isShowing);
+        obscuringPanel.SetActive(isShowing);
+        settings.SetActive(false);
     }
 
     /// <summary>
