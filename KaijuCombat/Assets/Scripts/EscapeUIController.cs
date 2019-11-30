@@ -50,4 +50,12 @@ public class EscapeUIController : MonoBehaviour
     {
         Application.Quit();
     }
+
+    /// <summary>
+    /// Plays button click sound
+    /// </summary>
+    public void ClickInitiateST()
+    {
+        FindObjectOfType<AudioManager>().Play("ClickInitiate");
+    }
 }
