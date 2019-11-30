@@ -28,4 +28,12 @@ public class DeckBuilderController : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
+
+    /// <summary>
+    /// Plays button click sound
+    /// </summary>
+    public void ClickInitiateST()
+    {
+        FindObjectOfType<AudioManager>().Play("ClickInitiate");
+    }
 }
