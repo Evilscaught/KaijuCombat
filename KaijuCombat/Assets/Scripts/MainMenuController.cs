@@ -14,37 +14,40 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 
+/// <summary>
+/// A class that contains all the methods that provide functionality to the main menu in the Unity Scene MenuScene
+/// </summary>
 public class MainMenuController : MonoBehaviour
 {
-    struct Scenes
-    {
-        public int main_menu_scene;
-        public int deck_builder_scene;
-        public int game_scene;
-
-        public Scenes(int main_menu_scene, int deck_builder_scene, int game_scene)
-        {
-            this.main_menu_scene = main_menu_scene;
-            this.deck_builder_scene = deck_builder_scene;
-            this.game_scene = game_scene;
-        }
-    }
-
-    // Loads the next scene (File -> Build Settings -> Scenes in Build)
+    /// <summary>
+    /// Loads the Unity Scene GameScene
+    /// </summary>
     public void PlayGame()
     {
         SceneManager.LoadScene("GameScene");
     }
 
-    // Kills the application
+    /// <summary>
+    /// Kills the Unity application
+    /// </summary>
     public void killGame()
     {
         Application.Quit();
     }
 
-    // Loads the DeckBuilder scene. 
+    /// <summary>
+    /// Loads the Unity Scene DeckBuilderScene
+    /// </summary>
     public void deckBuilder()
     {
         SceneManager.LoadScene("DeckBuilderScene");
+    }
+
+    /// <summary>
+    /// Plays button click sound
+    /// </summary>
+    public void ClickInitiateST()
+    {
+        FindObjectOfType<AudioManager>().Play("ClickInitiate");
     }
 }
