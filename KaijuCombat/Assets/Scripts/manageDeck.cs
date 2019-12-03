@@ -18,7 +18,7 @@ using UnityEngine.UIElements;
 using UnityEngine.UI;
 using System.IO;
 
-public class ManageDeck : MonoBehaviour
+public class manageDeck : MonoBehaviour
 {
     public TMP_Dropdown cardDDL;
     public TMP_Dropdown deckLoadDDL;

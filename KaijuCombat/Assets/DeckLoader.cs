@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DeckLoader : MonoBehaviour
 {
-    public List<Card> allPossibleCards;
+    Player playerScript;
+    List<Card> loadedDeck;
+
 
     private void Start() {
+        playerScript = GetComponent<Player>();
     }
 }
