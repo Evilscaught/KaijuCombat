@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -41,6 +43,28 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
+        string deck = PlayerPrefs.GetString("deckSelected");
+
+        if (deck != null)
+        {
+            player1.deck.Clear();
+
+            string filePath = Application.persistentDataPath.ToString() + "/" + deck;
+
+            StreamReader reader = new StreamReader(filePath);
+
+            while (!reader.EndOfStream)
+            {
+                string card = reader.ReadLine();
+
+                string[] guids = AssetDatabase.FindAssets(card);
+
+                if (guids[0] != null) {
+                    player1.deck.Add(AssetDatabase.LoadAssetAtPath<MonsterCard>(AssetDatabase.GUIDToAssetPath(guids[0])));
+                }
+            }
+        }
+
         for(int i = 0; i < 5; ++i) {
             player1.DrawCard();
             player2.DrawCard();
@@ -175,4 +199,40 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public IEnumerator manaTextGlow(float glowTime)
+    {
+        yield return StartCoroutine(this.manaTextGlowFadeIn(glowTime));
+        yield return StartCoroutine(this.manaTextGlowFadeOut(glowTime));
+    }
+
+    private IEnumerator manaTextGlowFadeIn(float glowTime)
+    {
+        float elapsedTime = 0.0f;
+
+        Color curColor = this.player1ManaText.GetComponent<Outline>().effectColor;
+        while (elapsedTime < glowTime)
+        {
+            curColor.a = Mathf.Lerp(0.0f, 1.0f, elapsedTime/glowTime);
+            this.player1ManaText.GetComponent<Outline>().effectColor = curColor;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator manaTextGlowFadeOut(float glowTime)
+    {
+        float elapsedTime = 0.0f;
+
+        Color curColor = this.player1ManaText.GetComponent<Outline>().effectColor;
+        while (elapsedTime < glowTime)
+        {
+            curColor.a = Mathf.Lerp(1.0f, 0.0f, elapsedTime / glowTime);
+            this.player1ManaText.GetComponent<Outline>().effectColor = curColor;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+    }
+
 }

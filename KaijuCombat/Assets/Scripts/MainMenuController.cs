@@ -13,12 +13,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
+using System.IO;
 
 /// <summary>
 /// A class that contains all the methods that provide functionality to the main menu in the Unity Scene MenuScene
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
+    public TMP_Dropdown deckSelectDDL;
+
     /// <summary>
     /// Loads the Unity Scene GameScene
     /// </summary>
@@ -49,5 +53,23 @@ public class MainMenuController : MonoBehaviour
     public void ClickInitiateST()
     {
         FindObjectOfType<AudioManager>().Play("ClickInitiate");
+    }
+
+    public void LoadDeckSelectDDL()
+    {
+        this.deckSelectDDL.options.Clear();
+
+        DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath.ToString());
+        FileInfo[] info = dir.GetFiles("*.sav");
+        foreach (FileInfo f in info)
+        {
+            //Debug.Log(f.Name);
+            this.deckSelectDDL.options.Add(new TMP_Dropdown.OptionData(f.Name));
+        }
+    }
+
+    public void selectDeck()
+    {
+        PlayerPrefs.SetString("deckSelected", this.deckSelectDDL.options[this.deckSelectDDL.value].text);
     }
 }

@@ -39,8 +39,12 @@ public class Player : MonoBehaviour
     /// </summary>
     public void StartTurn()
     {
-        if(currentMaxMana < 10)
+        if (currentMaxMana < 10)
+        {
             currentMaxMana += 1;
+            StartCoroutine(GameManager.instance.manaTextGlow(0.25f));
+
+        }
         currentMana = currentMaxMana;
         DrawCard();
     }
