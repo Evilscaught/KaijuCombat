@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DeckBuilderScene.unity
     guid: eea72f71b3a984044885f8477a7fb727
+  - enabled: 1
+    path: Assets/Scenes/TestDeckCreator.unity
+    guid: dc8ced36db993724cbe6f7ebcd0a2e06
   m_configObjects: {}

@@ -56,7 +56,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.SetAsLastSibling();
+        if(GameManager.instance.endGame == false)
+            transform.SetAsLastSibling();
     }
 
     /// <summary>
@@ -67,7 +68,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (realPlayerCanViewCard && eventData.button == PointerEventData.InputButton.Right)
+        if (realPlayerCanViewCard && eventData.button == PointerEventData.InputButton.Right && GameManager.instance.endGame == false)
         {
             ToggleZoom();
         }

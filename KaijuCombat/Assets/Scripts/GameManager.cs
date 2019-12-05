@@ -5,6 +5,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject player2ManaText;
     public GameObject player2DeckImage;
     public GameObject endGameText;
+    public GameObject endGamePanel;
 
     public List<Lane> lanes;
 
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
                 endGameText.transform.SetParent(null);
                 endGameText.transform.SetParent(canvas.transform);
             }
-            endGameText.SetActive(true);
+            endGamePanel.SetActive(true);
             endGameText.GetComponent<Text>().text = "Defeat!";
             endTurnButton.GetComponent<Button>().interactable = false;
             endGame = true;
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour
                 endGameText.transform.SetParent(null);
                 endGameText.transform.SetParent(canvas.transform);
             }
-            endGameText.SetActive(true);
+            endGamePanel.SetActive(true);
             endGameText.GetComponent<Text>().text = "Victory!";
             endTurnButton.GetComponent<Button>().interactable = false;
             endGame = true;
@@ -233,6 +235,17 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    /// <summary>
+    /// Loads the Unity Scene MenuScene
+    /// </summary>
+    public void returnToMainMenu() {
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void reloadGameScene() {
+        SceneManager.LoadScene("GameScene");
     }
 
 }

@@ -17,6 +17,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class manageDeck : MonoBehaviour
 {
@@ -139,5 +140,12 @@ public class manageDeck : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
+    }
+
+    /// <summary>
+    /// Loads the Unity Scene MenuScene
+    /// </summary>
+    public void returnToMainMenu() {
+        SceneManager.LoadScene("MenuScene");
     }
 }

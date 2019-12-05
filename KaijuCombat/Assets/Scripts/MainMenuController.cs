@@ -40,11 +40,11 @@ public class MainMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads the Unity Scene DeckBuilderScene
+    /// Loads the Unity Scene TestDeckCreator
     /// </summary>
     public void deckBuilder()
     {
-        SceneManager.LoadScene("DeckBuilderScene");
+        SceneManager.LoadScene("TestDeckCreator");
     }
 
     /// <summary>
