@@ -36,6 +36,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     Vector2 origPosition; //This is for returning the card after zooming
     private Sprite originalSprite;
 
+    public bool inAnimation = false;
 
     public string getName() { return cardName; }
     public string getDescription() { return cardDescription; }
@@ -56,7 +57,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(GameManager.instance.endGame == false)
+        if(GameManager.instance.endGame == false && !inAnimation && !GameManager.instance.attackPhaseInProgress)
             transform.SetAsLastSibling();
     }
 
@@ -68,9 +69,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (realPlayerCanViewCard && eventData.button == PointerEventData.InputButton.Right && GameManager.instance.endGame == false)
+        if (realPlayerCanViewCard && eventData.button == PointerEventData.InputButton.Right && GameManager.instance.endGame == false && !inAnimation && !GameManager.instance.attackPhaseInProgress)
         {
             ToggleZoom();
+        }
+        else if(realPlayerCanViewCard && inAnimation && !GameManager.instance.endGame && !GameManager.instance.attackPhaseInProgress)
+        {
+                GameManager.instance.StopAllCoroutines();
+                inAnimation = false;
+                transform.localScale = origScale;
+                GameManager.instance.DrawCardsOnScreen();
         }
     }
 
@@ -85,7 +93,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
     {
-        if (!inPlay && realPlayerCanViewCard && !zoomedIn && eventData.button != PointerEventData.InputButton.Right && !currentlyDestroyed)
+        if (!inPlay && realPlayerCanViewCard && !zoomedIn && eventData.button != PointerEventData.InputButton.Right && !currentlyDestroyed && !GameManager.instance.attackPhaseInProgress)
         {
             this.transform.position = eventData.position;
             currentlyDragging = true;
@@ -175,7 +183,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     /// </summary>
     public void ToggleZoom()
     {
-        if (!currentlyDragging)
+        if (!currentlyDragging && !inAnimation)
         {
             if (!zoomedIn)
             {
@@ -200,6 +208,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
     void Awake()
     {
         originalSprite = GetComponent<Image>().sprite;
+        origScale = transform.localScale;
     }
 
     /// <summary>
@@ -217,5 +226,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IDragHandler, IBeginDra
         {
             GetComponent<Image>().sprite = originalSprite;
         }
+    }
+
+    public void resetCard()
+    {
+        inAnimation = false;
+        transform.localScale = origScale;
     }
 }

@@ -29,6 +29,15 @@ public class EscapeUIController : MonoBehaviour
             escapeUI.SetActive(isShowing);
             obscuringPanel.SetActive(isShowing);
             settings.SetActive(false);
+
+            obscuringPanel.transform.SetSiblingIndex(GameManager.instance.canvas.transform.childCount - 1);
+            escapeUI.transform.SetSiblingIndex(GameManager.instance.canvas.transform.childCount - 1);
+        }
+
+        if(isShowing)
+        {
+            obscuringPanel.transform.SetSiblingIndex(GameManager.instance.canvas.transform.childCount - 1);
+            escapeUI.transform.SetSiblingIndex(GameManager.instance.canvas.transform.childCount - 1);
         }
     }
 

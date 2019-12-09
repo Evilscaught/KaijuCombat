@@ -12,6 +12,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -65,6 +66,17 @@ public class Player : MonoBehaviour
             GameObject createdCard = Instantiate(drawedCard, transform.position, Quaternion.identity).gameObject;
             createdCard.transform.SetParent(GameManager.instance.canvas.transform);
             createdCard.name = createdCard.name.Replace("(Clone)", "");
+
+            if (GameManager.instance.currentPlayersTurn == 0 && GameManager.instance.turnNumber > 1)
+            {
+                createdCard.GetComponent<Card>().inAnimation = true;
+            }
+            if (GameManager.instance.currentPlayersTurn == 1) {
+                createdCard.GetComponent<Image>().color = new Color(156.0f/255, 186.0f/255, 245.0f/255);
+                Debug.Log(createdCard.GetComponent<Image>().color.ToString());
+            }
+
+                    
             instantiatedHandCards.Add(createdCard);
         }
         else if(deck.Count > 0 && hand.Count >= 7)
@@ -79,6 +91,7 @@ public class Player : MonoBehaviour
             createdCard.transform.SetParent(GameManager.instance.canvas.transform);
             createdCard.name = createdCard.name.Replace("(Clone)", "");
             instantiatedGraveyardCards.Add(createdCard);
+
         }
         else
         {

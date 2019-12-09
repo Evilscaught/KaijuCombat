@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// The MonsterCard is a card object with the following properties: card attack and card defense
@@ -24,6 +25,8 @@ public class MonsterCard : Card, IPointerClickHandler
     [SerializeField]
     private int cardDefense = 0;
 
+    private GameObject damageText;
+    private int origDefense;
     /// <summary>
     /// This method will take the damage the card has recieved and reduce the cards defense
     /// </summary>
@@ -31,6 +34,23 @@ public class MonsterCard : Card, IPointerClickHandler
     public void ApplyDamage(int damage)
     {
         cardDefense -= damage;
+
+        if(damageText == null)
+        {
+            damageText = new GameObject(this.name + "_damagetext");
+            damageText.transform.SetParent(this.transform);
+            damageText.transform.localPosition = new Vector2(10, -10);
+            Text damageTextNumbers = damageText.AddComponent<Text>();
+            damageTextNumbers.text = cardDefense.ToString() + "/" + origDefense;
+            damageTextNumbers.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            damageTextNumbers.fontSize = 30;
+            damageTextNumbers.color = new Color(1f, 1f, 0.1f);
+        }
+        else
+        {
+            damageText.GetComponent<Text>().text = cardDefense.ToString() + "/" + origDefense;
+        }
+
     }
 
     /// <summary>
@@ -58,6 +78,11 @@ public class MonsterCard : Card, IPointerClickHandler
     public void AttackPlayer(Player target)
     {
         target.ApplyDamage(cardAttack);
+    }
+
+    void Start()
+    {
+        origDefense = cardDefense;
     }
 
     public int getAttack() { return cardAttack; }

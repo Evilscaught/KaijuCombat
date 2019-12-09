@@ -68,35 +68,78 @@ public class Lane : MonoBehaviour
     /// <summary>
     /// This method specifies the rules of the attack during the attack phase
     /// </summary>
-    public void AttackPhase()
+    public IEnumerator LaneAttackPhase()
     {
-        if (player1Monsters.Count > 0)
+        //Debug.Log("Lane attack phase");
+        if (player1Monsters.Count > 0 )
         {
             // If player 2 doesn't have any cards deployed, deal damage to player 2
             if (player2Monsters.Count == 0)
             {
-                player1Monsters[0].AttackPlayer(player2);
+                if (player1Monsters[0].getAttack() > 0)
+                {
+                    Debug.Log("Inside player #2 attack phase");
+                    yield return StartCoroutine(GameManager.instance.spinCardAnimation(player1Monsters[0], 0.8f));
+                    player1Monsters[0].AttackPlayer(player2);
+                    yield return StartCoroutine(GameManager.instance.playerHurtAnimation(1, 0.7f));
+                    Debug.Log("Done player #2 attack phase");
+                }
             }
-            else {
-                player1Monsters[0].ApplyDamage(player2Monsters[0].getAttack());
-                player2Monsters[0].ApplyDamage(player1Monsters[0].getAttack());
-                if (player1Monsters[0].getDefense() <= 0) {
+            else
+            {
+                if (player2Monsters[0].getAttack() > 0)
+                {
+                    yield return StartCoroutine(GameManager.instance.pullBackAttackCardAnimation(player2Monsters[0], player1Monsters[0], 1.3f, 20f, 1));
+                    player1Monsters[0].ApplyDamage(player2Monsters[0].getAttack());
+                    yield return StartCoroutine(GameManager.instance.shakeCardAnimation(player1Monsters[0], 0.7f));
+                    //yield return StartCoroutine(GameManager.instance.flashCardAnimation(player1Monsters[0], 1, 0.1f));
+                }
+                if (player1Monsters[0].getAttack() > 0)
+                {
+                    yield return StartCoroutine(GameManager.instance.pullBackAttackCardAnimation(player1Monsters[0], player2Monsters[0], 1.3f, 20f, 0));
+                    player2Monsters[0].ApplyDamage(player1Monsters[0].getAttack());
+                    yield return StartCoroutine(GameManager.instance.shakeCardAnimation(player2Monsters[0], 0.7f));
+                    //yield return StartCoroutine(GameManager.instance.flashCardAnimation(player2Monsters[0], 1, 0.1f));
+                }
+
+                if (player1Monsters[0].getDefense() <= 0)
+                {
                     GameManager.instance.player1.graveyard.Add(player1Monsters[0]);
                     GameManager.instance.player1.instantiatedGraveyardCards.Add(player1Monsters[0].gameObject);
                     player1Monsters.RemoveAt(0);
                 }
-                if (player2Monsters[0].getDefense() <= 0) {
+                if (player2Monsters[0].getDefense() <= 0)
+                {
                     GameManager.instance.player2.graveyard.Add(player2Monsters[0]);
                     GameManager.instance.player2.instantiatedGraveyardCards.Add(player2Monsters[0].gameObject);
                     player2Monsters.RemoveAt(0);
                 }
+
             }
         }
         // Deal damage to player 1 if player 2 has monster cards
-        else if(player2Monsters.Count > 0)
+        else if (player2Monsters.Count > 0 && player2Monsters[0].getAttack() > 0)
         {
+            yield return StartCoroutine(GameManager.instance.spinCardAnimation(player2Monsters[0], 0.8f));
             player2Monsters[0].AttackPlayer(player1);
+            yield return StartCoroutine(GameManager.instance.playerHurtAnimation(0, 0.7f));
         }
+
+        Debug.Log("Bottom of lane attack phase");
+        yield return null;
     }
+/*
+    public IEnumerator CardAttacks()
+    {
+        yield return StartCoroutine(this.manaTextGlowFadeIn(glowTime));
+        yield return StartCoroutine(this.manaTextGlowFadeOut(glowTime));
+    }
+
+    private IEnumerator manaTextGlowFadeIn(float glowTime)
+    {
+
+    }
+    */
+
 
 }
