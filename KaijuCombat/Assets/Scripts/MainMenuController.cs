@@ -48,6 +48,14 @@ public class MainMenuController : MonoBehaviour
     }
 
     /// <summary>
+    /// Loads Unity Scene StoreScene
+    /// </summary>
+    public void loadStore()
+    {
+        SceneManager.LoadScene("StoreScene");
+    }
+
+    /// <summary>
     /// Plays button click sound
     /// </summary>
     public void ClickInitiateST()
