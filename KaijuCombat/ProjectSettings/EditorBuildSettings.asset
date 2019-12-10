@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestDeckCreator.unity
     guid: dc8ced36db993724cbe6f7ebcd0a2e06
+  - enabled: 1
+    path: Assets/Scenes/StoreScene.unity
+    guid: 7b14392ec8f282d41b17e3c0a4aa2fb8
   m_configObjects: {}
