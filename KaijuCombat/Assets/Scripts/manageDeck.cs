@@ -27,28 +27,17 @@ public class manageDeck : MonoBehaviour
     public GameObject deckCollection;
     public ScrollView sv;
 
-    private List<string> guidCardList;
+    private Object[] cards;
 
     private void Start()
     {
-        guidCardList = new List<string>();
-
-        string[] guids1 = AssetDatabase.FindAssets("Monster");
+        cards = Resources.LoadAll("Cards", typeof(MonsterCard));
 
         //cardDDL.options.Clear();
-        foreach (string guid in guids1)
+        foreach (Object card in cards)
         {
-            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-
-            if (!assetPath.Contains("Old"))
-            {
-                GameObject tempAsset = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
-                if (tempAsset != null)
-                {
-                    string card = tempAsset.name;
-                    cardDDL.options.Add(new TMP_Dropdown.OptionData(card));
-                }
-            }
+            MonsterCard temp = (MonsterCard)card;
+            cardDDL.options.Add(new TMP_Dropdown.OptionData(temp.name));
         }
     }
 
@@ -60,11 +49,18 @@ public class manageDeck : MonoBehaviour
 
         while(!reader.EndOfStream)
         {
-            string card = reader.ReadLine();
+            string tempCardName = reader.ReadLine();
 
-            string[] guids = AssetDatabase.FindAssets(card);
 
-            this.addCardToDeckCollection(card, guids[0]);
+            foreach (Object card in cards)
+            {
+                if (card.name.Equals(tempCardName))
+                {
+                    MonsterCard temp = (MonsterCard)card;
+                    this.addCardToDeckCollection(temp);
+                    break;
+                }
+            }
         }
     }
 
@@ -98,35 +94,30 @@ public class manageDeck : MonoBehaviour
 
     public void addButtonClick()
     {
-        string[] guids1 = AssetDatabase.FindAssets("Monster");
-
         //cardDDL.options.Clear();
-        foreach (string guid in guids1)
+        foreach (Object card in cards)
         {
-            string card = AssetDatabase.LoadAssetAtPath<MonsterCard>(AssetDatabase.GUIDToAssetPath(guid)).name;
-            if (card != null && card.Equals(cardDDL.options[cardDDL.value].text))
+            MonsterCard temp = (MonsterCard)card;
+
+            if (temp != null && temp.name.Equals(cardDDL.options[cardDDL.value].text))
             {
-                guidCardList.Add(card);
-                addCardToDeckCollection(card, guid);
+                addCardToDeckCollection(temp);
                 break;
             }
         }
     }
 
-    private void addCardToDeckCollection(string card, string guid)
+    private void addCardToDeckCollection(MonsterCard card)
     {
-        GameObject newCard = new GameObject(card);
+        GameObject newCard = new GameObject(card.name);
 
         UnityEngine.UI.Image newCardImage = newCard.AddComponent<UnityEngine.UI.Image>();
-        newCardImage.sprite = AssetDatabase.LoadAssetAtPath<MonsterCard>(AssetDatabase.GUIDToAssetPath(guid)).GetComponent<UnityEngine.UI.Image>().sprite;
+        newCardImage.sprite = card.GetComponent<UnityEngine.UI.Image>().sprite;
         newCardImage.preserveAspect = true;
-        //                newCardImage.sprite.texture.width = AssetDatabase.LoadAssetAtPath<MonsterCard>(AssetDatabase.GUIDToAssetPath(guid)).GetComponent<UnityEngine.UI.Image>().sprite.texture.width;
-        //                newCardImage.sprite.texture.height = AssetDatabase.LoadAssetAtPath<MonsterCard>(AssetDatabase.GUIDToAssetPath(guid)).GetComponent<UnityEngine.UI.Image>().sprite.texture.height;
 
-        //scroll = GameObject.Find("CardScroll");
+        //ScrollViewGameObject container object
         if (deckCollection != null)
         {
-            //ScrollViewGameObject container object
             newCard.transform.localScale *= 4.0f;
             newCard.transform.position += new Vector3(newCard.transform.localScale.x / 2, newCard.transform.localScale.y / 2, 0f);
             newCard.transform.SetParent(deckCollection.transform, false);
