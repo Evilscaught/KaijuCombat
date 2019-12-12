@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
 
     public bool attackPhaseInProgress = false;
 
+    private System.Object[] cards;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -53,8 +56,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    {    
         string deck = PlayerPrefs.GetString("deckSelected");
+
+        cards = Resources.LoadAll("Cards", typeof(MonsterCard));
 
         if (deck != null)
         {
@@ -66,13 +71,15 @@ public class GameManager : MonoBehaviour
 
             while (!reader.EndOfStream)
             {
-                string card = reader.ReadLine();
+                string cardName = reader.ReadLine();
 
-                string[] guids = AssetDatabase.FindAssets(card);
-
-                if (guids[0] != null)
+                foreach (System.Object card in cards)
                 {
-                    player1.deck.Add(AssetDatabase.LoadAssetAtPath<MonsterCard>(AssetDatabase.GUIDToAssetPath(guids[0])));
+                    MonsterCard temp = (MonsterCard)card;
+                    if (temp.name.Equals(cardName))
+                    {
+                        player1.deck.Add(temp);
+                    }
                 }
             }
         }
@@ -284,7 +291,7 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator playerHurtAnimation(int player, float time)
-    {        
+    {
         float elapsedTime = 0.0f;
         GameObject hurtGraphic;
 
@@ -296,9 +303,9 @@ public class GameManager : MonoBehaviour
         Color originCol = hurtGraphic.GetComponent<Image>().color;
         Color newCol = new Color(1.0f, 1.0f, 1.0f);
 
-        while (elapsedTime < (time/2))
+        while (elapsedTime < (time / 2))
         {
-            hurtGraphic.GetComponent<Image>().color = Color.Lerp(originCol, newCol, elapsedTime / (time/2));
+            hurtGraphic.GetComponent<Image>().color = Color.Lerp(originCol, newCol, elapsedTime / (time / 2));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -343,14 +350,14 @@ public class GameManager : MonoBehaviour
 
         card.inAnimation = true;
         card.transform.SetAsLastSibling();
-        if(player == 0)
+        if (player == 0)
             pullBack = card.transform.position + new Vector3(0f, -pullBackDistance, 0f);
         else
             pullBack = card.transform.position + new Vector3(0f, pullBackDistance, 0f);
 
         float elapsedTime = 0.0f;
         Vector3 randomRot;
-            
+
         randomRot = originRotation.eulerAngles + new Vector3(0f, 0f, Random.Range(0f, 0.2f));
 
         while (elapsedTime < (time / 2.0f))
@@ -411,7 +418,7 @@ public class GameManager : MonoBehaviour
         while (elapsedTime < time)
         {
 
-            card.transform.Rotate(Vector3.Lerp(oldRot, newRot, elapsedTime/time));
+            card.transform.Rotate(Vector3.Lerp(oldRot, newRot, elapsedTime / time));
             //Debug.Log(card.transform.position);
 
             elapsedTime += Time.deltaTime;
